@@ -4,9 +4,10 @@ import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {BiSearch} from "react-icons/bi";
 import {Input} from "../input/input.tsx";
+import {SuggestLoading} from "../loading";
 
 export const Search = () => {
-    const {query, suggestions} = useSearchStore();
+    const {query, suggestions, loading} = useSearchStore();
     const {setQuery, getSuggestions} = useSearchStore((state) => state.actions);
     const debouncedSearch = useDebounce(query);
     const navigate = useNavigate();
@@ -65,15 +66,18 @@ export const Search = () => {
                 onClick={handleSearch}/>
             {showSuggestion && suggestions && suggestions.length > 0 && (
                 <ul className="absolute w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto scrollbar">
-                    {suggestions.slice(0, 20).map((suggestion, index) => (
-                        <li
-                            key={index}
-                            className="cursor-pointer p-2 hover:bg-gray-200"
-                            onClick={() => handleSuggestionClick(suggestion.title)}
-                        >
-                            {suggestion.title}
-                        </li>
-                    ))}
+                    {loading ?
+                            <SuggestLoading/>
+                        :
+                        suggestions.slice(0, 20).map((suggestion, index) => (
+                            <li
+                                key={index}
+                                className="cursor-pointer p-2 hover:bg-gray-200"
+                                onClick={() => handleSuggestionClick(suggestion.title)}
+                            >
+                                {suggestion.title}
+                            </li>
+                        ))}
                 </ul>
             )}
         </div>
