@@ -1,10 +1,18 @@
 import {useSearchStore} from "../../stores/search-store/useSearchStore.ts";
 import {useEffect} from "react";
 import {Loading} from "../loading";
+import {useParams} from "react-router-dom";
 
 export const Results = () => {
+    const {query: urlQuery} = useParams<{ query: string }>();
     const {query, loading, results} = useSearchStore();
-    const {getResults} = useSearchStore((state) => state.actions);
+    const {getResults, setQuery} = useSearchStore((state) => state.actions);
+
+    useEffect(() => {
+        if (urlQuery && urlQuery !== query) {
+            setQuery(urlQuery); // Update store with URL query
+        }
+    }, [urlQuery]);
 
     useEffect(() => {
         if (query !== '') {
