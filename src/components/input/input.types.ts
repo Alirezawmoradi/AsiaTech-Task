@@ -6,5 +6,5 @@ export interface InputProps {
     inputRef: RefObject<HTMLDivElement>;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-    onSearchIconClick: () => void;
+    className?: string;
 }
