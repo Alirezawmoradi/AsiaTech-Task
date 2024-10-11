@@ -10,7 +10,7 @@ export const Results = () => {
 
     useEffect(() => {
         if (urlQuery && urlQuery !== query) {
-            setQuery(urlQuery); // Update store with URL query
+            setQuery(urlQuery);
         }
     }, [urlQuery]);
 
