@@ -31,8 +31,9 @@ The search suggestions and results are fetched via the **RapidAPI** platform for
    ├── layouts/           # Main layout structure
    ├── pages/             # SearchPage and DetailPage
    ├── stores/            # Zustand store for search state management
+   ├── routes/            # React Router Dom for creating routes
    └── core/
-   └── http-service.ts  # Axios instance configured to interact with the DuckDuckGo API via RapidAPI
+         └── http-service.ts  # Axios instance configured to interact with the DuckDuckGo API via RapidAPI
 
 ## How to Run the Project
 ### Prerequisites
