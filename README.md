@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+# Search Engine Task
+## Project Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project implements a search engine using React, Tailwind CSS, TypeScript, and Vite. It allows users to search for a query and get results from the DuckDuckGo API. The project features two main pages:
+1. **Search Page :** Users can input a query and view search suggestions. Clicking on a suggestion or hitting the search icon navigates to the results page.
+2.  **Details Page :** Displays the search results based on the query entered on the search page. Users can click on the results to navigate to external sites.
+   
+The search suggestions and results are fetched via the **RapidAPI** platform for a cleaner and more structured response from the DuckDuckGo API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Debounced Search Input :** Search results are fetched after a small delay while typing, ensuring minimal API calls and optimal performance.
+- **Search Suggestions :** Provides suggestions similar to Google Search based on user input.
+- **Search Results :** Displays a list of search results with clickable titles that link to external URLs.
+- **Loading States :** Both the suggestion list and search results show loading indicators while data is being fetched.
 
-## Expanding the ESLint configuration
+## Tech Stack
+- **Frontend :** React, TypeScript
+- **State Management :** Zustand
+- **Styling :** Tailwind CSS
+- **Routing :**  React Router Dom
+- **HTTP Client :** Axios
+- **API :** DuckDuckGo API (via RapidAPI)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Project Structure
+- ```bash 
+   src/
+   │
+   ├── components/        # Reusable components (Search input, Results, Loading indicators)
+   ├── hooks/             # Custom hooks for debounced search and fetching data
+   ├── layouts/           # Main layout structure
+   ├── pages/             # SearchPage and DetailPage
+   ├── stores/            # Zustand store for search state management
+   └── core/
+   └── http-service.ts  # Axios instance configured to interact with the DuckDuckGo API via RapidAPI
 
-- Configure the top-level `parserOptions` property like this:
+## How to Run the Project
+### Prerequisites
+- Node.js and npm installed on your machine
+- A VPN is required to access RapidAPI
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. **Clone the repository:**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   git clone https://github.com/Alirezawmoradi/AsiaTech-Task
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+
+3. Start the application:
+
+   ```bash
+   npm run dev
+
+4. Open http://localhost:5173 in your browser to see the app in action.
+
+## Api Usage
+
+The project fetches search data from DuckDuckGo via RapidAPI.
+### Important Note
+Due to geographical restrictions, RapidAPI require the use of a VPN for stable access. Be sure to have this in mind during usage. The API key is pre-configured in the project for ease of use during testing.
+
+## Conclusion
+This project showcases the implementation of a functional search engine with a clean architecture and modern frontend technologies. The focus was on creating a user-friendly interface with optimized API calls, dynamic suggestions, and responsive design.
+
+## License
+This project is open-source and available under the [MIT license](https://opensource.org/licenses/MIT).
+
+
